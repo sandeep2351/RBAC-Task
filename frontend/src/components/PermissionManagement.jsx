@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useApi } from "../hooks/useApi";
-import { Button, Table, TableHead, TableRow, TableCell, TableBody, Paper, Checkbox } from "@mui/material";
+import {
+  Button,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+  Checkbox,
+} from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 const PermissionManagement = () => {
@@ -11,7 +20,7 @@ const PermissionManagement = () => {
   const loadPermissions = async () => {
     try {
       const data = await fetchData("permissions");
-      setPermissions(data);
+      setPermissions(data); // Assuming data is an array of objects with a 'name' property
     } catch (err) {
       toast.error("Failed to load permissions");
     }
@@ -40,7 +49,7 @@ const PermissionManagement = () => {
             <TableRow>
               <TableCell>Role</TableCell>
               {permissions.map((perm) => (
-                <TableCell key={perm}>{perm}</TableCell>
+                <TableCell key={perm._id}>{perm.name}</TableCell> // Use perm.name instead of perm
               ))}
             </TableRow>
           </TableHead>
@@ -49,10 +58,12 @@ const PermissionManagement = () => {
               <TableRow key={role.id}>
                 <TableCell>{role.name}</TableCell>
                 {permissions.map((perm) => (
-                  <TableCell key={perm}>
+                  <TableCell key={perm._id}>
                     <Checkbox
-                      defaultChecked={role.permissions.includes(perm)}
-                      onChange={() => toast.success(`${perm} updated for ${role.name}`)}
+                      defaultChecked={role.permissions.includes(perm._id)}
+                      onChange={() =>
+                        toast.success(`${perm.name} updated for ${role.name}`)
+                      }
                     />
                   </TableCell>
                 ))}

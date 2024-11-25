@@ -14,7 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => {
     console.error("Database connection error:", err);
@@ -43,7 +46,9 @@ app.use((req, res, next) => {
 // General Error Handling
 app.use((err, req, res, next) => {
   console.error("Internal server error:", err);
-  res.status(500).json({ error: "Something went wrong. Please try again later." });
+  res
+    .status(500)
+    .json({ error: "Something went wrong. Please try again later." });
 });
 
 // Start Server

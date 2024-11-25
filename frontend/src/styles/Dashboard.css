@@ -1,114 +1,144 @@
+/* Root Variables for Consistency */
 :root {
-    --primary: #4caf50;
-    --accent: #ff5722;
-    --bg-light: #f9f9f9;
-    --bg-dark: #212121;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-light);
-    color: var(--bg-dark);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .dark-mode {
-    background-color: var(--bg-dark);
-    color: var(--bg-light);
-  }
-  
-  button {
-    cursor: pointer;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background: var(--primary);
-    color: #fff;
-    font-size: 1rem;
-    transition: transform 0.3s, background-color 0.3s;
-  }
-  
-  button:hover {
-    background: var(--accent);
-    transform: translateY(-3px);
-  }
-  
-  /* Ensure that html and body take up full height */
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Container Styles for Dashboard */
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;  /* Full viewport height */
-    width: 100%; /* Full viewport width */
-    text-align: center;
-    padding: 20px;
-    background-color: #f4f6f9;
-  }
-  
-  /* Heading Styles */
-  .dashboard-container h1 {
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  
-  /* Button Section Styling */
+  --primary: #4caf50; /* Green */
+  --accent: #ff5722; /* Accent Orange */
+  --bg-light: #f9f9f9; /* Light Background */
+  --bg-dark: #212121; /* Dark Background */
+  --text-light: #fff; /* Light Text */
+  --text-dark: #333; /* Dark Text */
+  --border-radius: 8px; /* Standard Border Radius */
+  --transition-speed: 0.3s; /* Smooth Transition Speed */
+}
+
+/* Global Body Styling */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+  height: 100%;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Button Styling */
+button {
+  cursor: pointer;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--primary);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform var(--transition-speed),
+    background-color var(--transition-speed), box-shadow var(--transition-speed);
+  outline: none;
+}
+
+/* Button Hover Effect */
+button:hover {
+  background: var(--accent);
+  transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Ensure Full Height for Body and HTML */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full viewport width */
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f6f9;
+  gap: 40px; /* Space between elements */
+}
+
+/* Heading Styling */
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Button Section Styling */
+.dashboard-container .button-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px; /* Space between buttons */
+}
+
+.dashboard-container .MuiButton-root {
+  min-width: 180px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+  border-radius: var(--border-radius);
+}
+
+/* Custom Button Color Styles */
+.dashboard-container .MuiButton-contained.MuiButton-containedPrimary {
+  background-color: #1976d2; /* Blue for Manage Users */
+}
+
+.dashboard-container .MuiButton-contained.MuiButton-containedPrimary:hover {
+  background-color: #1565c0; /* Darker blue on hover */
+}
+
+.dashboard-container .MuiButton-contained.MuiButton-containedSecondary {
+  background-color: #d32f2f; /* Red for Manage Roles */
+}
+
+.dashboard-container .MuiButton-contained.MuiButton-containedSecondary:hover {
+  background-color: #c62828; /* Darker red on hover */
+}
+
+.dashboard-container .MuiButton-root[style*="background-color: #4caf50"] {
+  background-color: var(--primary); /* Green for Manage Permissions */
+}
+
+.dashboard-container .MuiButton-root[style*="background-color: #4caf50"]:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
   .dashboard-container .button-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    gap: 20px; /* Add space between the buttons */
+    flex-direction: column;
+    gap: 15px; /* Adjust gap for small screens */
   }
-  
-  /* Link Styles */
-  .dashboard-container a {
-    text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+  .dashboard-container h1 {
+    font-size: 1.8rem; /* Adjust heading size for small screens */
   }
-  
-  /* Custom Button Styles */
-  .dashboard-container .MuiButton-root {
-    min-width: 150px;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dashboard-container .MuiButton-root:hover {
-    opacity: 0.8;
-  }
-  
-  /* Custom Button Color Styles */
-  .dashboard-container .MuiButton-contained.MuiButton-containedPrimary {
-    background-color: #1976d2; /* Blue for Manage Users */
-  }
-  
-  .dashboard-container .MuiButton-contained.MuiButton-containedSecondary {
-    background-color: #d32f2f; /* Red for Manage Roles */
-  }
-  
-  .dashboard-container .MuiButton-root[style*="background-color: #4caf50"] {
-    background-color: #4caf50; /* Green for Manage Permissions */
-  }
-  
-  /* Responsive Styles */
-  @media screen and (max-width: 768px) {
-    .dashboard-container .button-section {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
+}
